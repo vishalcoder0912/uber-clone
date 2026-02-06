@@ -9,19 +9,22 @@ return res.status(400).json({errors:errors.array()});
 
 }
 
-const {Firstname,lastname,email,password}=req.body;
+console.log(req.body);
+
+
+const {firstname,lastname,email,password}=req.body;
 
 const hashedPassword=await userModel.hashedPassword(password);
 
 const user=await Userservice.createUser({
-    Firstname,
-    lastname,
+    firstnameirstname:firstname,
+    lastname:lastname,
     email,
     password:hashedPassword
 });
 
 const token=user.generateAuthToken();
-    res.status(201).json9({
+    res.status(201).json({
         token,
         user
     })
